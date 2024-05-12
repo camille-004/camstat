@@ -1,3 +1,5 @@
+"""Main entry-point script, using argparse for the CLI."""
+
 import argparse
 from pathlib import Path
 
