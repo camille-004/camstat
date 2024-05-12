@@ -1,0 +1,17 @@
+title = "System Information Config"
+
+[display]
+format = "CONSOLE"  # Options: "CONSOLE", "FILE"
+file_path = "system_info_output.txt"
+
+[[fields]]
+name = "os"
+displayName = "Operation System"
+
+[[fields]]
+name = "cpu_usage"
+displayName = "CPU Usage"
+
+[[fields]]
+name = "memory_usage"
+displayName = "Memory Usage"
