@@ -15,7 +15,10 @@ jobs:
         python-version: "3.12"
 
     - name: Install dependencies
-      run: poetry install
+      run: |
+        curl -sSL https://install.python-poetry.org | python3 -
+        poetry config virtualenvs.create false
+        poetry install
 
     - name: Run tests.
       run: make test
