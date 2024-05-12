@@ -3,11 +3,7 @@
 from dataclasses import dataclass, field
 from typing import Any, Callable
 
-from .strategy import (
-    CPURetrievalStrategy,
-    MemoryRetrievalStrategy,
-    OSRetrievalStrategy,
-)
+from .strategy import OSRetrievalStrategy
 
 
 @dataclass
@@ -81,10 +77,8 @@ class EntryFactory:
         ValueError
             If no strategyis defined for the given name.
         """
-        strategy_mapping: dict[str, Callable] = {
+        strategy_mapping: dict[str, Callable[[], str]] = {
             "os": OSRetrievalStrategy.retrieve,
-            "cpu_usage": CPURetrievalStrategy.retrieve,
-            "memory_usage": MemoryRetrievalStrategy.retrieve,
         }
         strategy = strategy_mapping.get(name)
         if strategy is None:
