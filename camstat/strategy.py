@@ -1,9 +1,10 @@
 """Define retrieval strategies for entries in the display."""
 
-import platform
 from functools import lru_cache
 
 import psutil
+
+from .os_info import OSInfo, OSStrategy
 
 
 class OSRetrievalStrategy:
@@ -12,7 +13,7 @@ class OSRetrievalStrategy:
     @staticmethod
     @lru_cache(maxsize=1)
     def retrieve() -> str:
-        """Retrieve the OS type using the `platform` module.
+        """Retrieve the OS type.
 
         This is cached to avoid repeated system calls for the same
         information.
@@ -22,7 +23,8 @@ class OSRetrievalStrategy:
         str
             The name of the operating system.
         """
-        return platform.system()
+        os_info: OSInfo = OSStrategy.get_os_info()
+        return f"{os_info.name} Version {os_info.version} ({os_info.build})"
 
 
 class CPURetrievalStrategy:
